@@ -3,6 +3,7 @@ defmodule PhxRealtimeWeb.UserSocket do
 
   ## Channels
   channel "ping", PhxRealtimeWeb.PingChannel
+  channel "wild:*", PhxRealtimeWeb.WildcardChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
