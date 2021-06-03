@@ -1,19 +1,14 @@
 # PhxRealtime
 
-To start your Phoenix server:
-
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
+npm i -g wscat
+mix phx.server
+# another terminal
+wscat -c 'ws://localhost:4000/socket/websocket?vsn=2.0.0'
+> ["1", "1", "ping", "phx_join", {}]
+< ["1","1","ping","phx_reply",{"response":{},"status":"ok"}]
+> ["1", "1", "ping", "ping", {}]
+< ["1","1","ping","phx_reply",{"response":{"ping":"pong"},"status":"ok"}]
+> ["1", "1", "ping", "ping", {"ack": "hi!"}]
+< ["1","1","ping","phx_reply",{"response":{"ping":"hi!"},"status":"ok"}]
+```
