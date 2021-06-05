@@ -3,6 +3,7 @@ defmodule PhxRealtimeWeb.AuthSocket do
   require Logger
 
   channel "ping", PhxRealtimeWeb.PingChannel
+  channel "recurring", PhxRealtimeWeb.RecurringChannel
 
   def connect(%{"token" => token}, socket, _connect_info) do
     case(verify(socket, token)) do

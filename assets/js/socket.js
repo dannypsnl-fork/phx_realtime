@@ -9,10 +9,16 @@
 import { Socket } from "phoenix";
 
 let authSocket = new Socket("/auth_socket", {
-  params: { token: window.userToken },
+  params: { token: window.authToken },
 });
 
 authSocket.onOpen(() => console.log("authSocket connected"));
 authSocket.connect();
+
+const recurringChannel = authSocket.channel("recurring");
+
+recurringChannel.on("new_token", (payload) =>
+  console.log("received new auth token", payload)
+);
 
 export default authSocket;
