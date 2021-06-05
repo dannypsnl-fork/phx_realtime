@@ -17,6 +17,14 @@ authSocket.connect();
 
 const recurringChannel = authSocket.channel("recurring");
 
+recurringChannel
+  .join()
+  .receive("ok", (resp) => {
+    console.log("Joined successfully", resp);
+  })
+  .receive("error", (resp) => {
+    console.log("Unable to join", resp);
+  });
 recurringChannel.on("new_token", (payload) =>
   console.log("received new auth token", payload)
 );
