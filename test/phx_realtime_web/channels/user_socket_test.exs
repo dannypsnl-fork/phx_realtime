@@ -7,4 +7,11 @@ defmodule PhxRealtimeWeb.UserSocketTest do
       assert {:ok, %Phoenix.Socket{}} = connect(UserSocket, %{})
     end
   end
+
+  describe "id/1" do
+    test "can be connected to without parameters" do
+      {:ok, socket} = connect(UserSocket, %{})
+      assert UserSocket.id(socket) == nil
+    end
+  end
 end
