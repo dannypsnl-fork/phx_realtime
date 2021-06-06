@@ -11,7 +11,7 @@ defmodule PhxRealtimeWeb.AuthSocketTest do
   end
 
   describe "connect/3 error" do
-    test "can be connected to without parameters" do
+    test "cannot be connected with an invalid token" do
       params = %{"token" => generate_token(1, salt: "invalid")}
 
       assert capture_log(fn ->
