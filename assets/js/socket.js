@@ -16,7 +16,6 @@ authSocket.onOpen(() => console.log("authSocket connected"));
 authSocket.connect();
 
 const recurringChannel = authSocket.channel("recurring");
-
 recurringChannel
   .join()
   .receive("ok", (resp) => {
@@ -28,5 +27,9 @@ recurringChannel
 recurringChannel.on("new_token", (payload) =>
   console.log("received new auth token", payload)
 );
+
+const dupeChannel = authSocket.channel("dupe");
+dupeChannel.on("number", (payload) => console.log("new number", payload));
+dupeChannel.join();
 
 export default authSocket;

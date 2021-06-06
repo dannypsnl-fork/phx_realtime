@@ -4,6 +4,7 @@ defmodule PhxRealtimeWeb.AuthSocket do
 
   channel "ping", PhxRealtimeWeb.PingChannel
   channel "recurring", PhxRealtimeWeb.RecurringChannel
+  channel "dupe", PhxRealtimeWeb.DedupeChannel
 
   def connect(%{"token" => token}, socket, _connect_info) do
     case(verify(socket, token)) do
