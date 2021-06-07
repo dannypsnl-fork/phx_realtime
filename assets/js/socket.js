@@ -25,4 +25,17 @@ const dupeChannel = authSocket.channel("dupe");
 dupeChannel.on("number", (payload) => console.log("new number", payload));
 dupeChannel.join();
 
+let statsSocket = new Socket("/stats_socket", {});
+statsSocket.connect();
+
+const statsChannelInvalid = statsSocket.channel("invalid");
+statsChannelInvalid.join().receive("error", () => statsChannelInvalid.leave());
+
+const statsChannelValid = statsSocket.channel("valid");
+statsChannelValid.join();
+
+for (let i=0; i<5; i++) {
+  statsChannelValid.push("ping");
+}
+
 export default authSocket;

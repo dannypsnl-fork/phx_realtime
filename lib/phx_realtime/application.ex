@@ -6,6 +6,8 @@ defmodule PhxRealtime.Application do
   use Application
 
   def start(_type, _args) do
+    :ok = PhxRealtime.Statix.connect()
+
     children = [
       # Start the Telemetry supervisor
       PhxRealtimeWeb.Telemetry,
